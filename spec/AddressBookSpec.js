@@ -6,7 +6,7 @@ describe('Address Book', function() {
   beforeEach(function() {
     addressBook = new AddressBook();
     thisContact = new Contact();
-  })
+  });
 
   it('should be able to add a contact', function() {
     addressBook.addContact(thisContact);
@@ -23,10 +23,18 @@ describe('Address Book', function() {
 });
 
 describe('Async Address Book', function() {
-  it('should grab initial contacts', function() {
-    let addressBook = new AddressBook();
+  const addressBook = new AddressBook();
 
-    addressBook.getInitialContacts();
+  // `done` tells the framework our async function has completed
+  beforeEach(function(done) {
+    addressBook.getInitialContacts(function() {
+      done();
+    });
+  });
+
+  // `done` tells the framework which tests rely upon async execution
+  it('should grab initial contacts', function(done) {
     expect(addressBook.initialComplete).toBe(true);
+    done();
   });
 });
