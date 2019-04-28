@@ -1,4 +1,4 @@
-/* Global AddressBook, Contact */
+/* global AddressBook, Contact */
 describe('Address Book', function() {
   let addressBook = {};
   let thisContact = {};
